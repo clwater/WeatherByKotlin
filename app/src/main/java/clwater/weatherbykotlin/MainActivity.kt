@@ -1,5 +1,6 @@
 package clwater.weatherbykotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
@@ -24,6 +25,7 @@ class MainActivity() : AppCompatActivity() {
 
     //val date: Date , val temperature : Float , val  datails : String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,7 +36,7 @@ class MainActivity() : AppCompatActivity() {
         async{
             val result = RequestForecastCommand("94043").execute()
             uiThread {
-//                forecast_list.adapter = ForecastListAdapter(result, object : OnItemClickListener{
+                //                forecast_list.adapter = ForecastListAdapter(result, object : OnItemClickListener{
 //                    override fun invoke(forecast: Forecast) {
 //                        toast(forecast.date)
 //                    }
@@ -46,7 +48,11 @@ class MainActivity() : AppCompatActivity() {
         }
 
 
+        startActivity(Intent(this , DetailActivity::class.java))
+
+
     }
+
 
 
 
