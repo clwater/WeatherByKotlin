@@ -12,7 +12,7 @@ public class ForecastRequest(val  zipCode : String){
     }
 
     fun execute() : ForecastResult{
-        val forecastJsonStr = java.net.URL(COMPLETE_URL + zipCode).readText()
+        val forecastJsonStr = java.net.URL("http://m.weather.com.cn/d/town/index?lat=38.91222&lon=121.602219").readText()
         Log.d("gzb" , forecastJsonStr)
         return Gson().fromJson(forecastJsonStr , ForecastResult::class.java)
     }
