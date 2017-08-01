@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="rela_main_night_parent" type="id"/>
+    <item name="rela_main_night_weather" type="id"/>
+    <item name="rela_main_night_temp" type="id"/>
+    <item name="rela_main_night_windd" type="id"/>
+    <item name="rela_main_night_windp" type="id"/>
+    <item name="textview_main_cityname" type="id"/>
+</resources>
