@@ -3,11 +3,15 @@ package clwater.weatherbykotlin.UI.Activity
 import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.TextView
 import clwater.weatherbykotlin.R
 import clwater.weatherbykotlin.UI.Layout.MainActivityUI
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.*
+import org.jetbrains.anko.custom.async
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,12 +30,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-//        textview_main_cityname = find(R.id.textview_main_cityname)
-//
-//        textview_main_cityname.text = "ti"
+        initRefresh()
     }
 
-
+    private fun initRefresh() {
+        swipeRefreshLayout_main.setOnRefreshListener {
+            async(){
+                Thread.sleep(2000)
+                Log.d("gzb" , "re")
+                uiThread{
+                    swipeRefreshLayout_main.isRefreshing = false
+                }
+            }
+        }
+        swipeRefreshLayout_main.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light)
+    }
 
 
 }
