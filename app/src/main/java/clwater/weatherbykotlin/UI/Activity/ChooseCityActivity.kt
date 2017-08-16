@@ -29,7 +29,7 @@ class ChooseCityActivity :  AppCompatActivity(){
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE)
 //        MainActivityUI().setContentView(this@MainActivity)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_choosecity)
 
         supportActionBar?.hide()
     }

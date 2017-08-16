@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initview() {
-//        textview_main_citylist.setOnClickListener {  startActivity()}
+        textview_main_citylist.setOnClickListener {  startActivity<ChooseCityActivity>()}
+
     }
 
 //
