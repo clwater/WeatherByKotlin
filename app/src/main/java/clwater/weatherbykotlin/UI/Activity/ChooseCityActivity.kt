@@ -2,8 +2,14 @@ package clwater.weatherbykotlin.UI.Activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Window
 import clwater.weatherbykotlin.R
+import clwater.weatherbykotlin.Utils.Analysis
+import clwater.weatherbykotlin.Utils.Request
+import kotlinx.android.synthetic.main.activity_choosecity.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * Created by gengzhibo on 17/8/14.
@@ -11,16 +17,6 @@ import clwater.weatherbykotlin.R
 
 
 
-//for (int i = 0 ; i < 5 ; i++) {
-//
-//    TextView textView = new TextView(this);
-//    textView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-//    textView.setCompoundDrawablePadding(12);
-//    textView.setText("some advice text " + i);
-//    textView.setTextSize(16);
-//    textView.setTextColor(Color.parseColor("#666666"));
-//    lineralayout_dashboard_suggest.addView(textView);
-//}
 
 class ChooseCityActivity :  AppCompatActivity(){
 
@@ -28,9 +24,24 @@ class ChooseCityActivity :  AppCompatActivity(){
         super.onCreate(savedInstanceState)
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        MainActivityUI().setContentView(this@MainActivity)
         setContentView(R.layout.activity_choosecity)
 
         supportActionBar?.hide()
+
+        initView()
+        initData()
+    }
+
+    private fun initData() {
+        doAsync {
+            var cityListText = Request("http://i.tq121.com.cn/j/wap2016/news/city_data.js?2016").run()
+            Analysis.analysisCityList(cityListText)
+//            uiThread { Log.d("gzb" , cityListText) }
+        }
+    }
+
+
+    fun initView(){
+        textview_choooseCity_cityIndex1.setText("城市")
     }
 }

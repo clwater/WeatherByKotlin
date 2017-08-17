@@ -39,22 +39,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//
-//    private fun initRefresh() {
-//        swipeRefreshLayout_main.setOnRefreshListener {
-//            async(){
-//                Thread.sleep(2000)
-//                Log.d("gzb" , "re")
-//                uiThread{
-//                    swipeRefreshLayout_main.isRefreshing = false
-//                }
-//            }
-//        }
-//        swipeRefreshLayout_main.setColorSchemeResources(android.R.color.holo_blue_bright,
-//                android.R.color.holo_green_light,
-//                android.R.color.holo_orange_light,
-//                android.R.color.holo_red_light)
-//    }
 
 
 }
