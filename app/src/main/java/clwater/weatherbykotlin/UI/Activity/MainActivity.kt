@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-
+        startActivity<ChooseCityActivity>()
         init()
     }
 

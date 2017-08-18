@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Window
+import clwater.weatherbykotlin.Model.Province
 import clwater.weatherbykotlin.R
 import clwater.weatherbykotlin.Utils.Analysis
 import clwater.weatherbykotlin.Utils.Request
@@ -20,6 +21,7 @@ import org.jetbrains.anko.uiThread
 
 class ChooseCityActivity :  AppCompatActivity(){
 
+    var provinceListy = ArrayList<Province>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,8 +37,8 @@ class ChooseCityActivity :  AppCompatActivity(){
     private fun initData() {
         doAsync {
             var cityListText = Request("http://i.tq121.com.cn/j/wap2016/news/city_data.js?2016").run()
-            Analysis.analysisCityList(cityListText)
-//            uiThread { Log.d("gzb" , cityListText) }
+            provinceListy = Analysis.analysisCityList(cityListText)
+            uiThread { Log.d("gzb" , provinceListy.get(5).Pname) }
         }
     }
 

@@ -2,6 +2,9 @@ package clwater.weatherbykotlin.Utils
 
 import android.util.JsonReader
 import android.util.Log
+import clwater.weatherbykotlin.Model.City
+import clwater.weatherbykotlin.Model.Province
+import clwater.weatherbykotlin.Model.Region
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
@@ -15,51 +18,72 @@ import java.util.logging.Logger
  */
 
 object Analysis{
-    fun analysisCityList(cityList : String){
-        var cityList = cityList.replace("var city_data=" , "")
-        cityList = cityList.replace(";" , "")
-        cityList = cityList.replace("AREAID" , "\"AREAID\"")
-        cityList = cityList.replace("NAMECN" , "\"NAMECN\"")
+    fun analysisCityList(cityList : String) : ArrayList<Province>{
+        var tempcitylist = cityList.replace("var city_data={" , "")
+        tempcitylist = tempcitylist.replace("};" , " ")
+        tempcitylist = tempcitylist.replace("AREAID" , "\"AREAID\"")
+        tempcitylist = tempcitylist.replace("NAMECN" , "\"NAMECN\"")
 
-        var rand : Reader = StringReader(cityList)
-        var jsonObject = JsonReader(rand)
-        jsonObject.beginObject()
+        Log.d("gzb" , "tempcitylist: " + tempcitylist)
+        var citylist = tempcitylist.split("}}},")
 
-        while (jsonObject.hasNext()){
-            var text = jsonObject.nextName()
-            Log.d("gzb" , "text1 : " + text)
-
-            jsonObject.beginObject()
-            while (jsonObject.hasNext()){
-                var text = jsonObject.nextName()
-                Log.d("gzb" , "text2 : " + text)
-
-                jsonObject.beginObject()
-
-                while (jsonObject.hasNext()){
-                    var text = jsonObject.nextName()
-                    Log.d("gzb" , "text3 : " + text)
+        val provinceList = ArrayList<Province>()
+        Log.d("gzb" , "citylist.length: " + citylist.size)
 
 
-                    while (jsonObject.hasNext()){
-                        var text = jsonObject.nextName()
-                        Log.d("gzb" , "text4 : " + text)
 
-                        if(text.equals("AREAID")){
-                            Log.d("gzb" , "text41 : " + jsonObject.nextString())
-                        }else if (text.equals("NAMECN")){
-                            Log.d("gzb" , "text42 : " + jsonObject.nextString())
-                        }else {
-                            jsonObject.skipValue()
-                        }
+        for (index in 0.rangeTo(citylist.size - 1)) {
+            val province = Province()
 
-                    }
+            var tempProvince = citylist[index]
+            tempProvince = " {" + tempProvince + "}}}}"
 
+            val provinceStringReader = StringReader(tempProvince)
+            val provinceJsonReader = JsonReader(provinceStringReader)
+            provinceJsonReader.beginObject()
+            province.Pname = provinceJsonReader.nextName()
+
+            val _cityList = ArrayList<City>()
+
+            Log.d("gzb", "provinceName : " + province.Pname)
+            provinceJsonReader.beginObject()
+
+            while (provinceJsonReader.hasNext()) {
+                val city  = City()
+                city.Cname = provinceJsonReader.nextName()
+                val _reginList  = ArrayList<Region>()
+
+                provinceJsonReader.beginObject()
+
+                while (provinceJsonReader.hasNext()) {
+                    val region  = Region()
+                    region.Rname = provinceJsonReader.nextName()
+
+                    provinceJsonReader.beginObject()
+
+                    provinceJsonReader.nextName()
+                    region.Id = provinceJsonReader.nextString()
+
+                    provinceJsonReader.nextName()
+                    region.Id = provinceJsonReader.nextString()
+
+                    provinceJsonReader.endObject()
+
+                    _reginList.add(region)
                 }
+                provinceJsonReader.endObject()
+
+                city.RegionList = _reginList
+                _cityList.add(city)
             }
+            provinceJsonReader.endObject()
+            provinceJsonReader.endObject()
+
+            province.CityList = _cityList
+            provinceList.add(province)
+
         }
 
-//        var jsonArray = JSONArray(cityList)
-//        Log.d("gzb" , jsonArray.get(0).toString())
+        return provinceList
     }
 }
