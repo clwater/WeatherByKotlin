@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import clwater.weatherbykotlin.EventBus.EB_changeCityTitle
+import clwater.weatherbykotlin.Model.CityChooseListShowModel
 import clwater.weatherbykotlin.Model.Province
 import clwater.weatherbykotlin.R
 import org.greenrobot.eventbus.EventBus
@@ -19,19 +20,19 @@ class CityChooseAdapter : RecyclerView.Adapter<CityChooseAdapter.CityChooseViewH
 
 
     private val mLayoutInflater: LayoutInflater
-    private var list: List<Province>? = ArrayList<Province>()
+    private var list: List<CityChooseListShowModel>? = ArrayList<CityChooseListShowModel>()
+    public var index = -1
 
-
-    constructor( context: Context, _list: List<Province>) {
+    constructor( context: Context, _list: List<CityChooseListShowModel>) {
         this.list = _list
-        mLayoutInflater = LayoutInflater.from(context)
+        this.mLayoutInflater = LayoutInflater.from(context)
+        this.index = index + 1
     }
 
 
 
     override fun onBindViewHolder(holder: CityChooseViewHolder, position: Int) {
-        holder.text.text = list!![position].Pname
-
+        holder.text.text = list!![position].name
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityChooseViewHolder {
@@ -52,7 +53,7 @@ class CityChooseAdapter : RecyclerView.Adapter<CityChooseAdapter.CityChooseViewH
             text.text = "set CityName"
             text.setOnClickListener( {
                 Log.d("gzb" , "onclick" + getPosition())
-                EventBus.getDefault().post(EB_changeCityTitle(getPosition()))
+                EventBus.getDefault().post(EB_changeCityTitle(getPosition() , index + 1))
             })
         }
     }
