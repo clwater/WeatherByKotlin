@@ -58,12 +58,12 @@ object Analysis{
                     region.Rname = provinceJsonReader.nextName()
 
                     provinceJsonReader.beginObject()
-
                     provinceJsonReader.nextName()
+
                     region.Id = provinceJsonReader.nextString()
 
                     provinceJsonReader.nextName()
-                    region.Id = provinceJsonReader.nextString()
+                    provinceJsonReader.nextString()
 
                     provinceJsonReader.endObject()
 
