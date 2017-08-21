@@ -20,19 +20,21 @@ class CityChooseAdapter : RecyclerView.Adapter<CityChooseAdapter.CityChooseViewH
 
 
     private val mLayoutInflater: LayoutInflater
-    private var list: List<CityChooseListShowModel>? = ArrayList<CityChooseListShowModel>()
-    public var index = -1
+    private var list = CityChooseListShowModel()
+    private var index : Int
 
-    constructor( context: Context, _list: List<CityChooseListShowModel>) {
+    constructor( context: Context, _list: CityChooseListShowModel , index : Int) {
         this.list = _list
         this.mLayoutInflater = LayoutInflater.from(context)
-        this.index = index + 1
+        this.index = index
     }
 
 
 
     override fun onBindViewHolder(holder: CityChooseViewHolder, position: Int) {
-        holder.text.text = list!![position].name
+        this.index = list.index
+        holder.text.text = list.list!![position]
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityChooseViewHolder {
@@ -42,7 +44,7 @@ class CityChooseAdapter : RecyclerView.Adapter<CityChooseAdapter.CityChooseViewH
 
 
     override fun getItemCount(): Int {
-        return if (list == null) 0 else list!!.size
+        return if (list == null) 0 else list.list!!.size
     }
 
 
@@ -50,10 +52,8 @@ class CityChooseAdapter : RecyclerView.Adapter<CityChooseAdapter.CityChooseViewH
         var text: TextView = view.findViewById(R.id.textview_chooseCityadapter_text)
 
         init {
-            text.text = "set CityName"
             text.setOnClickListener( {
-                Log.d("gzb" , "onclick" + getPosition())
-                EventBus.getDefault().post(EB_changeCityTitle(getPosition() , index + 1))
+                EventBus.getDefault().post(EB_changeCityTitle(getPosition() , index))
             })
         }
     }

@@ -3,17 +3,17 @@ package clwater.weatherbykotlin.Model
 /**
  * Created by gengzhibo on 17/8/17.
  */
-public class Province() {
-    var Pname: String  = String()
-    var CityList: List<City> = ArrayList<City>()
+class Province {
+    var Pname = String()
+    var CityList= ArrayList<City>()
 
-    class City() {
-        var Cname: String  = String()
-        var RegionList: List<Region> = ArrayList<Region>()
+    class City {
+        var Cname = String()
+        var RegionList= ArrayList<Region>()
 
-        class Region() {
-            var Id: String = String()
-            var Rname: String = String()
+        class Region {
+            var Id = String()
+            var Rname = String()
         }
     }
 }

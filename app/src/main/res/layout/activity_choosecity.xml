@@ -25,13 +25,26 @@
             android:id="@+id/textview_choooseCity_cityIndex1"
             android:textColor="#75dbea"
             android:textSize="16sp"
-            android:text="选择城市"
+            android:text="全国"
+            android:layout_marginStart="10dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_choooseCity_cityIndex2"
+            android:textColor="#75dbea"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_choooseCity_cityIndex3"
+            android:textColor="#75dbea"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
             />
 
 
