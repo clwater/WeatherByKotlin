@@ -2,9 +2,7 @@ package clwater.weatherbykotlin.Utils
 
 import android.util.JsonReader
 import android.util.Log
-import clwater.weatherbykotlin.Model.City
 import clwater.weatherbykotlin.Model.Province
-import clwater.weatherbykotlin.Model.Region
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
@@ -43,20 +41,20 @@ object Analysis{
             provinceJsonReader.beginObject()
             province.Pname = provinceJsonReader.nextName()
 
-            val _cityList = ArrayList<City>()
+            val _cityList = ArrayList<Province.City>()
 
             Log.d("gzb", "provinceName : " + province.Pname)
             provinceJsonReader.beginObject()
 
             while (provinceJsonReader.hasNext()) {
-                val city  = City()
+                val city  = Province.City()
                 city.Cname = provinceJsonReader.nextName()
-                val _reginList  = ArrayList<Region>()
+                val _reginList  = ArrayList<Province.City.Region>()
 
                 provinceJsonReader.beginObject()
 
                 while (provinceJsonReader.hasNext()) {
-                    val region  = Region()
+                    val region  = Province.City.Region()
                     region.Rname = provinceJsonReader.nextName()
 
                     provinceJsonReader.beginObject()
