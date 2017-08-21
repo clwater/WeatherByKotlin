@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.view.Window
+import clwater.weatherbykotlin.EventBus.EB_ResultCityChoose
 import clwater.weatherbykotlin.EventBus.EB_changeCityTitle
 import clwater.weatherbykotlin.Model.CityChooseListShowModel
 import clwater.weatherbykotlin.Model.Province
@@ -127,7 +128,9 @@ class ChooseCityActivity :  AppCompatActivity(){
             var cityName = provinceListy.get(index1).CityList[index2].RegionList[e.position].Rname
             var cityId = provinceListy.get(index1).CityList[index2].RegionList[e.position].Id
             Log.d("gzb" , "cityName: " + cityName)
-            Log.d("gzb" , "cityId: " + cityId)
+            Log.d("gzb" , "cityId: " + cityName)
+            this.finish()
+            EventBus.getDefault().post(EB_ResultCityChoose(cityName , cityName))
         }
         index = index + 1
         UpDataAdapter()
@@ -142,4 +145,19 @@ class ChooseCityActivity :  AppCompatActivity(){
         EventBus.getDefault().unregister(this)
     }
 
+    override fun onBackPressed() {
+        Log.d("gzb" , "onBackPressed index : " + index)
+
+        if (index == 0){
+            this.finish()
+        }else if (index == 1 ){
+            index = -1
+            EventBus.getDefault().post(EB_changeCityTitle(0 , index))
+        }else if (index ==2){
+            index = 0
+            EventBus.getDefault().post(EB_changeCityTitle(index1 , index))
+        }
+    }
 }
+
+
