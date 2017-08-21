@@ -96,13 +96,13 @@ class ChooseCityActivity :  AppCompatActivity(){
         recyview_chooseCity_recyview.addItemDecoration(ItemDecoration(this@ChooseCityActivity))
 
         textview_choooseCity_cityIndex1.setOnClickListener({
-            Log.d("gzb" , "textview_choooseCity_cityIndex1")
+//            Log.d("gzb" , "textview_choooseCity_cityIndex1")
                 index = -1
                 EventBus.getDefault().post(EB_changeCityTitle(0 , index))
         })
 
         textview_choooseCity_cityIndex2.setOnClickListener({
-            Log.d("gzb" , "textview_choooseCity_cityIndex2")
+//            Log.d("gzb" , "textview_choooseCity_cityIndex2")
             index = 0
             EventBus.getDefault().post(EB_changeCityTitle(index1 , index))
         })
@@ -128,7 +128,7 @@ class ChooseCityActivity :  AppCompatActivity(){
             var cityName = provinceListy.get(index1).CityList[index2].RegionList[e.position].Rname
             var cityId = provinceListy.get(index1).CityList[index2].RegionList[e.position].Id
             Log.d("gzb" , "cityName: " + cityName)
-            Log.d("gzb" , "cityId: " + cityName)
+            Log.d("gzb" , "cityId: " + cityId)
             this.finish()
             EventBus.getDefault().post(EB_ResultCityChoose(cityName , cityName))
         }

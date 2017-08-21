@@ -43,7 +43,7 @@ object Analysis{
 
             val _cityList = ArrayList<Province.City>()
 
-            Log.d("gzb", "provinceName : " + province.Pname)
+//            Log.d("gzb", "provinceName : " + province.Pname)
             provinceJsonReader.beginObject()
 
             while (provinceJsonReader.hasNext()) {

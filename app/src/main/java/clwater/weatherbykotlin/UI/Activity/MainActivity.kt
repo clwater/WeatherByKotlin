@@ -9,6 +9,7 @@ import android.widget.TextView
 import clwater.weatherbykotlin.EventBus.EB_ResultCityChoose
 import clwater.weatherbykotlin.R
 import clwater.weatherbykotlin.UI.Layout.MainActivityUI
+import clwater.weatherbykotlin.Utils.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.experimental.async
 import org.greenrobot.eventbus.EventBus
@@ -19,8 +20,8 @@ import org.jetbrains.anko.custom.async
 
 class MainActivity : AppCompatActivity() {
 
-    private var cityName = String()
-    private var cityId = String()
+    private var cityName: String by Preference(this, "cityName", "")
+    private var cityId : String by Preference(this, "cityId", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +31,23 @@ class MainActivity : AppCompatActivity() {
         EventBus.getDefault().register(this)
 
         supportActionBar?.hide()
-        startActivity<ChooseCityActivity>()
         init()
     }
 
     private fun init() {
 //        initRefresh()
         initview()
+
+        checkChooseData()
+    }
+
+    private fun checkChooseData(){
+        Log.d("gzb" , "cityName: " + cityName)
+        if (!cityName.equals("")){
+            textview_main_cityname.text = cityName
+        } else{
+            startActivity<ChooseCityActivity>()
+        }
     }
 
     private fun initview() {
