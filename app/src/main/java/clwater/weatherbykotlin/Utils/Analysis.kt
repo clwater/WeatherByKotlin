@@ -16,18 +16,18 @@ import java.util.logging.Logger
  */
 
 object Analysis{
-    fun analysisCityList(cityList : String) : ArrayList<Province>{
+    fun analysisCityList(cityList: String) : ArrayList<Province>{
         var tempcitylist = cityList.replace("var city_data={" , "")
         tempcitylist = tempcitylist.replace("};" , " ")
         tempcitylist = tempcitylist.replace("AREAID" , "\"AREAID\"")
         tempcitylist = tempcitylist.replace("NAMECN" , "\"NAMECN\"")
 
-        Log.d("gzb" , "tempcitylist: " + tempcitylist)
-        var citylist = tempcitylist.split("}}},")
+
+        val citylist = tempcitylist.split("}}},")
 
         val provinceList = ArrayList<Province>()
-        Log.d("gzb" , "citylist.length: " + citylist.size)
 
+        var strBffer   = StringBuffer()
 
 
         for (index in 0.rangeTo(citylist.size - 1)) {
@@ -43,7 +43,6 @@ object Analysis{
 
             val _cityList = ArrayList<Province.City>()
 
-//            Log.d("gzb", "provinceName : " + province.Pname)
             provinceJsonReader.beginObject()
 
             while (provinceJsonReader.hasNext()) {
@@ -52,6 +51,8 @@ object Analysis{
                 val _reginList  = ArrayList<Province.City.Region>()
 
                 provinceJsonReader.beginObject()
+
+                strBffer.setLength(0)
 
                 while (provinceJsonReader.hasNext()) {
                     val region  = Province.City.Region()
@@ -83,5 +84,11 @@ object Analysis{
         }
 
         return provinceList
+    }
+    fun analysisCityInfo(cityInfo: String) {
+       var  regexMatch = "TEMMIN".toRegex()
+
+        val info = regexMatch.matches(cityInfo)
+        Log.d("gzb" , info.toString())
     }
 }

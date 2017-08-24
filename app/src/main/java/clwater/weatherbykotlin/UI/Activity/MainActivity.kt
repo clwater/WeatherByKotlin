@@ -9,7 +9,9 @@ import android.widget.TextView
 import clwater.weatherbykotlin.EventBus.EB_ResultCityChoose
 import clwater.weatherbykotlin.R
 import clwater.weatherbykotlin.UI.Layout.MainActivityUI
+import clwater.weatherbykotlin.Utils.Analysis
 import clwater.weatherbykotlin.Utils.Preference
+import clwater.weatherbykotlin.Utils.Request
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.experimental.async
 import org.greenrobot.eventbus.EventBus
@@ -37,16 +39,30 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
 //        initRefresh()
         initview()
-
         checkChooseData()
+
+        rela_main_infotext.setOnClickListener { updataWeatherData() }
     }
 
     private fun checkChooseData(){
         Log.d("gzb" , "cityName: " + cityName)
         if (!cityName.equals("")){
             textview_main_cityname.text = cityName
+            updataWeatherData()
         } else{
             startActivity<ChooseCityActivity>()
+        }
+    }
+
+    private fun updataWeatherData() {
+        var url = "http://m.weather.com.cn/d/town/index?lat=39.904989&lon=116.405285"
+        doAsync {
+            val cityInfoText = Request(url).run()
+//                Log.d("gzb" , cityInfoText)
+            Analysis.analysisCityInfo(cityInfoText)
+            uiThread {
+
+            }
         }
     }
 
