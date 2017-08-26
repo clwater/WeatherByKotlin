@@ -55,15 +55,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updataWeatherData() {
-        var url = "http://m.weather.com.cn/d/town/index?lat=39.904989&lon=116.405285"
+
         doAsync {
+
+
+            val geoList = getCityGeo()
+            val url = String.format("http://m.weather.com.cn/d/town/index?lat=%s&lon=%s" , geoList.get(1) , geoList.get(0) )
+//            val url = String("http://m.weather.com.cn/d/town/index?lat=39.904989&lon=116.405285")
             val cityInfoText = Request(url).run()
-//                Log.d("gzb" , cityInfoText)
+            Log.d("gzb" , "url: " +url)
+            Log.d("gzb" , "cityInfoText: " +cityInfoText)
             Analysis.analysisCityInfo(cityInfoText)
+
+
             uiThread {
 
             }
         }
+    }
+
+    private fun getCityGeo() :List<String>{
+        val url = String.format("http://mobile.weather.com.cn/data/forecast/%s.html", cityId)
+        Log.d("gzb" , "url: " + url)
+        val cityInfoText = Request(url).run()
+        return Analysis.analysisCityGeo(cityInfoText)
     }
 
     private fun initview() {

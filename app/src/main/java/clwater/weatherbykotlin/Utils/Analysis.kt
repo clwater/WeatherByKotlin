@@ -3,6 +3,7 @@ package clwater.weatherbykotlin.Utils
 import android.util.JsonReader
 import android.util.Log
 import clwater.weatherbykotlin.Model.Province
+import clwater.weatherbykotlin.Model.WeatherModel
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
@@ -10,6 +11,7 @@ import org.json.JSONTokener
 import java.io.Reader
 import java.io.StringReader
 import java.util.logging.Logger
+import java.util.regex.Pattern
 
 /**
  * Created by gengzhibo on 17/8/17.
@@ -85,10 +87,40 @@ object Analysis{
 
         return provinceList
     }
-    fun analysisCityInfo(cityInfo: String) {
-       var  regexMatch = "TEMMIN".toRegex()
+    fun analysisCityInfo(cityInfo: String) : ArrayList<WeatherModel>{
 
-        val info = regexMatch.matches(cityInfo)
-        Log.d("gzb" , info.toString())
+        val pattern = """\{\"TEMMIN.*?\}"""
+
+        val mat = Regex(pattern).findAll(cityInfo).toList()
+        val weatherList = ArrayList<WeatherModel>()
+
+        for (value : MatchResult in mat){
+            Log.d("gzb" , value.value )
+            val weatherModel : WeatherModel? = null
+            val jsonObject =  JSONObject(value.value)
+            weatherModel?.reftime = jsonObject.getString("reftime")
+            weatherModel?.TEMMIN = jsonObject.getInt("TEMMIN")
+            weatherModel?.TEMMAX = jsonObject.getInt("TEMMAX")
+            weatherModel?.WIND1 = jsonObject.getString("WIND1")
+            weatherModel?.WINS1 = jsonObject.getString("WINS1")
+            weatherModel?.WIND2 = jsonObject.getString("WIND2")
+            weatherModel?.WINS2 = jsonObject.getString("WINS2")
+            weatherModel?.WEATHER1 = jsonObject.getString("WEATHER1")
+            weatherModel?.WEATHER2 = jsonObject.getString("WEATHER2")
+            weatherList.add(weatherModel!!)
+        }
+
+        return weatherList
+    }
+
+    fun analysisCityGeo(cityGeo: String) : List<String>{
+        val _list = ArrayList<String>()
+
+        val jsonObject = JSONObject(cityGeo)
+        val jsonObject_C = jsonObject.getJSONObject("c")
+        _list.add(jsonObject_C.getString("c13"))
+        _list.add(jsonObject_C.getString("c14"))
+
+        return _list
     }
 }

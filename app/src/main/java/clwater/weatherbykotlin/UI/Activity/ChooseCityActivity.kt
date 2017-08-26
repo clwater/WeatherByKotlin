@@ -130,7 +130,7 @@ class ChooseCityActivity :  AppCompatActivity(){
             Log.d("gzb" , "cityName: " + cityName)
             Log.d("gzb" , "cityId: " + cityId)
             this.finish()
-            EventBus.getDefault().post(EB_ResultCityChoose(cityName , cityName))
+            EventBus.getDefault().post(EB_ResultCityChoose(cityName , cityId))
         }
         index = index + 1
         UpDataAdapter()
