@@ -1,6 +1,7 @@
 package clwater.weatherbykotlin.UI.Activity
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +23,12 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.*
 import org.jetbrains.anko.custom.async
+import android.opengl.ETC1.getHeight
+import android.opengl.ETC1.getWidth
+import android.content.Context.WINDOW_SERVICE
+import android.view.WindowManager
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,18 +44,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         EventBus.getDefault().register(this)
-
         supportActionBar?.hide()
-        init()
+
+        checkChooseData()
+        initView()
+
     }
 
-    private fun init() {
+    private fun initView() {
 //        initRefresh()
-        initview()
-        checkChooseData()
+        initChoose()
         initScroll()
+        initMainHeight()
 
+    }
 
+    private fun initMainHeight() {
+        val wm = this.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val ll = rela_nowWeather.layoutParams
+        ll.height = wm.defaultDisplay.height
+        rela_nowWeather.layoutParams = ll
+
+    }
+
+    private fun initChoose() {
+        textview_main_citylist.setOnClickListener {  startActivity<ChooseCityActivity>()}
     }
 
     private fun initScroll() {
@@ -99,7 +119,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initview() {
-        textview_main_citylist.setOnClickListener {  startActivity<ChooseCityActivity>()}
 
     }
 
