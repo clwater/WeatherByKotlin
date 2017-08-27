@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Window
 import android.widget.TextView
 import clwater.weatherbykotlin.EventBus.EB_ResultCityChoose
+import clwater.weatherbykotlin.Model.WeatherModel
 import clwater.weatherbykotlin.R
 import clwater.weatherbykotlin.UI.Layout.MainActivityUI
 import clwater.weatherbykotlin.Utils.Analysis
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     private var cityName: String by Preference(this, "cityName", "")
     private var cityId : String by Preference(this, "cityId", "")
+
+    private lateinit var weatherList : ArrayList<WeatherModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,14 +67,18 @@ class MainActivity : AppCompatActivity() {
 //            val url = String("http://m.weather.com.cn/d/town/index?lat=39.904989&lon=116.405285")
             val cityInfoText = Request(url).run()
             Log.d("gzb" , "url: " +url)
-            Log.d("gzb" , "cityInfoText: " +cityInfoText)
-            Analysis.analysisCityInfo(cityInfoText)
-
+//            Log.d("gzb" , "cityInfoText: " +cityInfoText)
+            weatherList = Analysis.analysisCityInfo(cityInfoText)
+            Analysis.analysisCityNow(cityInfoText)
 
             uiThread {
-
+                updataView()
             }
         }
+    }
+
+    private fun updataView() {
+
     }
 
     private fun getCityGeo() :List<String>{

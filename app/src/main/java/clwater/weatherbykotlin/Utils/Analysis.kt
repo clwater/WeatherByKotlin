@@ -87,8 +87,31 @@ object Analysis{
 
         return provinceList
     }
-    fun analysisCityInfo(cityInfo: String) : ArrayList<WeatherModel>{
 
+    fun analysisCityNow(cityInfo: String){
+        Log.d("gzb" , cityInfo)
+        var _cityInfo = cityInfo.replace("\\n" , "")
+        _cityInfo = _cityInfo.replace("\\t" , "")
+        _cityInfo = _cityInfo.replace("\\r" , "")
+        _cityInfo = _cityInfo.replace(" " , "")
+
+//        val pattern = """</h4>"""
+//        val mat = Regex(pattern).findAll(_cityInfo).toList()
+//
+        Log.d("gzb" , _cityInfo)
+        Log.d("gzb" , "analysisCityNow" )
+//        for (value : MatchResult in mat) {
+//            Log.d("gzb", value.value)
+//        }
+
+        val a = Regex(".*</h4>").findAll(_cityInfo).toList()
+
+        Log.d("gzb" , "a : " + a.get(0).value)
+
+        Log.d("gzb" , "analysisCityNow2" )
+    }
+
+    fun analysisCityInfo(cityInfo: String) : ArrayList<WeatherModel>{
         val pattern = """\{\"TEMMIN.*?\}"""
 
         val mat = Regex(pattern).findAll(cityInfo).toList()
@@ -96,18 +119,21 @@ object Analysis{
 
         for (value : MatchResult in mat){
             Log.d("gzb" , value.value )
-            val weatherModel : WeatherModel? = null
+            val weatherModel  =  WeatherModel()
             val jsonObject =  JSONObject(value.value)
-            weatherModel?.reftime = jsonObject.getString("reftime")
-            weatherModel?.TEMMIN = jsonObject.getInt("TEMMIN")
-            weatherModel?.TEMMAX = jsonObject.getInt("TEMMAX")
-            weatherModel?.WIND1 = jsonObject.getString("WIND1")
-            weatherModel?.WINS1 = jsonObject.getString("WINS1")
-            weatherModel?.WIND2 = jsonObject.getString("WIND2")
-            weatherModel?.WINS2 = jsonObject.getString("WINS2")
-            weatherModel?.WEATHER1 = jsonObject.getString("WEATHER1")
-            weatherModel?.WEATHER2 = jsonObject.getString("WEATHER2")
-            weatherList.add(weatherModel!!)
+
+//            Log.d("gzb" , "jsonObject.getString(\"reftime\"): " + jsonObject.getString("reftime") )
+
+            weatherModel.reftime = jsonObject.getString("reftime")
+            weatherModel.TEMMIN = jsonObject.getInt("TEMMIN")
+            weatherModel.TEMMAX = jsonObject.getInt("TEMMAX")
+            weatherModel.WIND1 = jsonObject.getString("WIND1")
+            weatherModel.WINS1 = jsonObject.getString("WINS1")
+            weatherModel.WIND2 = jsonObject.getString("WIND2")
+            weatherModel.WINS2 = jsonObject.getString("WINS2")
+            weatherModel.WEATHER1 = jsonObject.getString("WEATHER1")
+            weatherModel.WEATHER2 = jsonObject.getString("WEATHER2")
+            weatherList.add(weatherModel)
         }
 
         return weatherList

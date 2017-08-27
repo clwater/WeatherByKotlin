@@ -12,7 +12,7 @@ import java.net.URL
 public class Request(val url: String) {
     public fun run() : String{
         val forecastJsonStr = URL(url).readText()
-        Log.d(javaClass.simpleName, forecastJsonStr)
+//        Log.d(javaClass.simpleName, forecastJsonStr)
         return forecastJsonStr
     }
 }
