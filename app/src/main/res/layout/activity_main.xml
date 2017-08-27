@@ -6,8 +6,6 @@
     android:layout_height="match_parent">
 
 
-
-
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +14,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -37,162 +36,128 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
-    <TextView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout_main"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_main"
-        android:id="@+id/rela_main_time"
-        android:text="time"
-        android:layout_margin="5dp"
-        />
-
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rela_main_infotext"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/rela_main_time"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_main"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="rela_main_infotext"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            >
 
-    </RelativeLayout>
-
-
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/rela_main_night_parent"
-        android:layout_margin="10dp"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/relativeLayout_night_text"
-            android:text="a\na"/>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/relativeLayout_night_text"
-            android:orientation="vertical">
+            android:layout_below="@+id/toolbar_main">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rela_main_night_weather"
-                    android:text="tetx1"
-                    android:gravity="center"
-
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rela_main_night_temp"
-                    android:text="text2"
-                    android:gravity="center"
-                    />
-
-            </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rela_nowWeather">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22°"
+                        android:paddingTop="10dp"
+                        android:paddingStart="10dp"
+                        android:id="@+id/textview_now_updata"
+                        />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="22°"
+                        android:textSize="80sp"
+                        android:paddingTop="10dp"
+                        android:id="@+id/textview_now_temp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/textview_now_weather"
+                        android:text="多云"
+                        android:layout_toRightOf="@+id/textview_now_temp"
+                        android:textSize="25sp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textview_now_temp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="东风68级"
+                            android:paddingTop="20dp"
+                            android:textSize="20sp"
+                            android:id="@+id/textview_now_wind"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="相对湿度180%"
+                            android:paddingTop="20dp"
+                            android:textSize="20sp"
+                            android:id="@+id/textview_now_wet"
+                            />
+
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rela_main_night_windd"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:textSize="100sp"
                     android:gravity="center"
-                    android:text="text3"
+                    android:text="1"
                     />
-
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rela_main_night_windp"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:textSize="100sp"
                     android:gravity="center"
-                    android:text="text4"
+                    android:text="2"
                     />
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:textSize="100sp"
+                    android:gravity="center"
+                    android:text="3"
+                    />
             </LinearLayout>
 
-        </LinearLayout>
 
-    </RelativeLayout>
+        </RelativeLayout>
 
+        </ScrollView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="temp"
-        android:layout_above="@+id/rela_main_night_parent"
-        android:layout_margin="5dp"
-        android:id="@+id/rela_main_today_temp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/rela_main_today_temp"
-        android:layout_above="@+id/rela_main_night_parent"
-        android:id="@+id/rela_main_today_weather"
-        android:layout_margin="5dp"
-        android:text="we"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/rela_main_today_weather"
-        android:layout_above="@+id/rela_main_night_parent"
-        android:id="@+id/rela_main_today_wind"
-        android:layout_margin="5dp"
-        android:text="wind"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pollution"
-        android:layout_above="@+id/rela_main_today_temp"
-        android:layout_margin="5dp"
-        android:id="@+id/rela_main_today_pollution"
-        />
-
-
-
-    <!--<android.support.v4.widget.SwipeRefreshLayout-->
-        <!--android:id="@+id/swipeRefreshLayout_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--&gt;-->
-        <!--<ListView-->
-            <!--android:id="@+id/listView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-        <!--</ListView>-->
-    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

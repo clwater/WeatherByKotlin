@@ -4,6 +4,7 @@ import android.util.JsonReader
 import android.util.Log
 import clwater.weatherbykotlin.Model.Province
 import clwater.weatherbykotlin.Model.WeatherModel
+import clwater.weatherbykotlin.Model.WeatherNowModel
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
@@ -88,27 +89,42 @@ object Analysis{
         return provinceList
     }
 
-    fun analysisCityNow(cityInfo: String){
+    fun analysisCityNow(cityInfo: String) : WeatherNowModel{
         Log.d("gzb" , cityInfo)
-        var _cityInfo = cityInfo.replace("\\n" , "")
-        _cityInfo = _cityInfo.replace("\\t" , "")
-        _cityInfo = _cityInfo.replace("\\r" , "")
+        var _cityInfo = cityInfo.replace("\n" , "")
+        _cityInfo = _cityInfo.replace("\t" , "")
+        _cityInfo = _cityInfo.replace("\r" , "")
         _cityInfo = _cityInfo.replace(" " , "")
 
-//        val pattern = """</h4>"""
-//        val mat = Regex(pattern).findAll(_cityInfo).toList()
-//
-        Log.d("gzb" , _cityInfo)
-        Log.d("gzb" , "analysisCityNow" )
-//        for (value : MatchResult in mat) {
-//            Log.d("gzb", value.value)
-//        }
+        val weathernow = WeatherNowModel()
+        val temptext = Regex("weather-position-address.*</h4>").findAll(_cityInfo).toList().get(0).value
+        Log.d("gzb" , "temptextL: " + temptext)
+        var temp = Regex("#fff;\">.*?</time>").findAll(temptext).toList().get(0).value
+        temp = temp.replace("#fff;\">" , "")
+        temp = temp.replace("</time>" , "")
+        weathernow.updataTime = temp
 
-        val a = Regex(".*</h4>").findAll(_cityInfo).toList()
+        temp = Regex("<i>.*?</i>").findAll(temptext).toList().get(0).value
+        temp = temp.replace("<i>" , "")
+        temp = temp.replace("</i>" , "")
+        weathernow.temp = temp
 
-        Log.d("gzb" , "a : " + a.get(0).value)
+        temp = Regex("<h2>.*?</h2>").findAll(temptext).toList().get(1).value
+        temp = temp.replace("<h2>" , "")
+        temp = temp.replace("</h2>" , "")
+        weathernow.weather = temp
 
-        Log.d("gzb" , "analysisCityNow2" )
+        temp = Regex("flfxiconli.*?</span>").findAll(temptext).toList().get(0).value
+        temp = temp.replace("flfxiconli\">" , "")
+        temp = temp.replace("</span>" , "")
+        weathernow.wind = temp
+
+        temp = Regex("xdsdiconli.*?</span>").findAll(temptext).toList().get(0).value
+        temp = temp.replace("xdsdiconli\">" , "")
+        temp = temp.replace("</span>" , "")
+        weathernow.wet = temp
+
+        return weathernow
     }
 
     fun analysisCityInfo(cityInfo: String) : ArrayList<WeatherModel>{

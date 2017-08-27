@@ -1,6 +1,7 @@
 package clwater.weatherbykotlin.UI.Activity
 
 import android.app.Activity
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.Window
 import android.widget.TextView
 import clwater.weatherbykotlin.EventBus.EB_ResultCityChoose
 import clwater.weatherbykotlin.Model.WeatherModel
+import clwater.weatherbykotlin.Model.WeatherNowModel
 import clwater.weatherbykotlin.R
 import clwater.weatherbykotlin.UI.Layout.MainActivityUI
 import clwater.weatherbykotlin.Utils.Analysis
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private var cityId : String by Preference(this, "cityId", "")
 
     private lateinit var weatherList : ArrayList<WeatherModel>
+    private lateinit var weathernow : WeatherNowModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +46,14 @@ class MainActivity : AppCompatActivity() {
 //        initRefresh()
         initview()
         checkChooseData()
+        initScroll()
 
-        rela_main_infotext.setOnClickListener { updataWeatherData() }
+
+    }
+
+    private fun initScroll() {
+        swipeRefreshLayout_main.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED)
+        swipeRefreshLayout_main.setOnRefreshListener({updataWeatherData()})
     }
 
     private fun checkChooseData(){
@@ -58,10 +67,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updataWeatherData() {
-
         doAsync {
-
-
             val geoList = getCityGeo()
             val url = String.format("http://m.weather.com.cn/d/town/index?lat=%s&lon=%s" , geoList.get(1) , geoList.get(0) )
 //            val url = String("http://m.weather.com.cn/d/town/index?lat=39.904989&lon=116.405285")
@@ -69,16 +75,20 @@ class MainActivity : AppCompatActivity() {
             Log.d("gzb" , "url: " +url)
 //            Log.d("gzb" , "cityInfoText: " +cityInfoText)
             weatherList = Analysis.analysisCityInfo(cityInfoText)
-            Analysis.analysisCityNow(cityInfoText)
-
+            weathernow =  Analysis.analysisCityNow(cityInfoText)
             uiThread {
                 updataView()
+                swipeRefreshLayout_main.isRefreshing = false
             }
         }
     }
 
     private fun updataView() {
-
+        textview_now_updata.setText(weathernow.updataTime)
+        textview_now_temp.setText(weathernow.temp + "°")
+        textview_now_weather.setText(weathernow.weather)
+        textview_now_wind.setText(weathernow.wind)
+        textview_now_wet.setText(weathernow.wet)
     }
 
     private fun getCityGeo() :List<String>{
