@@ -90,7 +90,7 @@ object Analysis{
     }
 
     fun analysisCityNow(cityInfo: String) : WeatherNowModel{
-        Log.d("gzb" , cityInfo)
+//        Log.d("gzb" , cityInfo)
         var _cityInfo = cityInfo.replace("\n" , "")
         _cityInfo = _cityInfo.replace("\t" , "")
         _cityInfo = _cityInfo.replace("\r" , "")
@@ -98,7 +98,7 @@ object Analysis{
 
         val weathernow = WeatherNowModel()
         val temptext = Regex("weather-position-address.*</h4>").findAll(_cityInfo).toList().get(0).value
-        Log.d("gzb" , "temptextL: " + temptext)
+//        Log.d("gzb" , "temptextL: " + temptext)
         var temp = Regex("#fff;\">.*?</time>").findAll(temptext).toList().get(0).value
         temp = temp.replace("#fff;\">" , "")
         temp = temp.replace("</time>" , "")
