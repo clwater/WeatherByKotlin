@@ -19,12 +19,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.*
 import android.view.WindowManager
-import android.R.attr.tag
-
-
-
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -53,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         initChoose()
         initScroll()
 //        initMainHeight()
+//        "http://i.tq121.com.cn/i/wap2017/bg/n16.jpg"
 
     }
 
@@ -116,8 +111,9 @@ class MainActivity : AppCompatActivity() {
         textview_d0_w1.text = index2text(after0.WEATHER2)
         textview_d0_i0.background = getDrawable(index2image(after0.WEATHER1))
         textview_d0_i1.background = getDrawable(index2image(after0.WEATHER2))
-        textview_d0_t0.text = after0.TEMMAX.toString()
-        textview_d0_t1.text = after0.TEMMIN.toString()
+        textview_d0_t0.text = weatherList.get(0).TEMMAX.toString()
+        textview_d0_t1.text = weatherList.get(0).TEMMIN.toString()
+        textview_d0_wind.text = getWindtext(after0)
 
         textview_d1_w0.text = index2text(after1.WEATHER1)
         textview_d1_w1.text = index2text(after1.WEATHER2)
@@ -125,6 +121,7 @@ class MainActivity : AppCompatActivity() {
         textview_d1_i1.background = getDrawable(index2image(after1.WEATHER2))
         textview_d1_t0.text = after1.TEMMAX.toString()
         textview_d1_t1.text = after1.TEMMIN.toString()
+        textview_d1_wind.text = getWindtext(after1)
 
         textview_d2_w0.text = index2text(after2.WEATHER1)
         textview_d2_w1.text = index2text(after2.WEATHER2)
@@ -132,6 +129,7 @@ class MainActivity : AppCompatActivity() {
         textview_d2_i1.background = getDrawable(index2image(after2.WEATHER2))
         textview_d2_t0.text = after2.TEMMAX.toString()
         textview_d2_t1.text = after2.TEMMIN.toString()
+        textview_d2_wind.text = getWindtext(after2)
 
         textview_d3_w0.text = index2text(after3.WEATHER1)
         textview_d3_w1.text = index2text(after3.WEATHER2)
@@ -139,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         textview_d3_i1.background = getDrawable(index2image(after3.WEATHER2))
         textview_d3_t0.text = after3.TEMMAX.toString()
         textview_d3_t1.text = after3.TEMMIN.toString()
+        textview_d3_wind.text = getWindtext(after3)
 
         textview_d4_w0.text = index2text(after4.WEATHER1)
         textview_d4_w1.text = index2text(after4.WEATHER2)
@@ -146,9 +145,8 @@ class MainActivity : AppCompatActivity() {
         textview_d4_i1.background = getDrawable(index2image(after4.WEATHER2))
         textview_d4_t0.text = after4.TEMMAX.toString()
         textview_d4_t1.text = after4.TEMMIN.toString()
+        textview_d4_wind.text = getWindtext(after4)
     }
-
-
 
 
     private fun updataNowView() {
@@ -173,6 +171,7 @@ class MainActivity : AppCompatActivity() {
         cityId = e.id
 
         textview_main_cityname.setText(cityName)
+        updataWeatherData()
     }
 
     private fun index2image(index: String): Int {
@@ -221,6 +220,51 @@ class MainActivity : AppCompatActivity() {
             else-> return "未知"
         }
 
+    }
+
+
+    private fun getWindtext(weatherModel: WeatherModel ):String{
+        if(weatherModel.WIND1.equals(weatherModel.WIND2) && weatherModel.WINS1.equals(weatherModel.WINS2)) {
+            return index2WindDtext(weatherModel.WIND1) + index2WindLtext(weatherModel.WINS1)
+        }else{
+            return index2WindDtext(weatherModel.WIND1) + index2WindLtext(weatherModel.WINS1) + "转" +
+                    index2WindDtext(weatherModel.WIND2) + index2WindLtext(weatherModel.WINS2)
+        }
+    }
+
+    private fun index2WindDtext(index : String) : String{
+        val _index = index.toInt()
+        when(_index){
+            0 -> return ""
+            1 -> return "东北风"
+            2 -> return "东风"
+            3 -> return "东南风"
+            4 -> return "南风"
+            5 -> return "西南风"
+            6 -> return "西风"
+            7 -> return "西北风"
+            8 -> return "北风"
+            9 -> return "旋转风"
+            else -> return "未知"
+        }
+    }
+
+    private fun index2WindLtext(index : String) : String{
+        val _index = index.toInt()
+        when(_index){
+
+            0 -> return "微风"
+            1 -> return "3-4级"
+            2 -> return "4-5级"
+            3 -> return "5-6级"
+            4 -> return "6-7级"
+            5 -> return "7-8级"
+            6 -> return "8-9级"
+            7 -> return "9-10级"
+            8 -> return "10-11级"
+            9 -> return "11-12级"
+            else -> return "未知"
+        }
     }
 }
 

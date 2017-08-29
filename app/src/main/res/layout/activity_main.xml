@@ -188,49 +188,11 @@
                             android:id="@+id/textview_d0_i1"
                             />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d0_wd1"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d0_wd2"
-                                android:gravity="center"
-                                />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d0_wi1"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d0_wi2"
-                                android:gravity="center"
-                                />
-                        </LinearLayout>
+                            android:id="@+id/textview_d0_wind"
+                            />
 
 
                     </LinearLayout>
@@ -284,53 +246,12 @@
                             android:layout_height="50dp"
                             android:id="@+id/textview_d1_i1"
                             />
-                        <LinearLayout
-                            android:layout_width="match_parent"
+
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d1_wd0"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d1_wd1"
-                                android:gravity="center"
-
-                                />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d1_wi0"
-                                android:gravity="center"
-
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d1_wi1"
-                                android:gravity="center"
-
-                                />
-                        </LinearLayout>
-
+                            android:id="@+id/textview_d1_wind"
+                            />
 
                     </LinearLayout>
 
@@ -384,50 +305,12 @@
                             android:id="@+id/textview_d2_i1"
                             />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d2_wd0"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d2_wd1"
-                                android:gravity="center"
-
-                                />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d2_wi0"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d2_wi1"
-                                android:gravity="center"
-                                />
-                        </LinearLayout>
+                            android:id="@+id/textview_d2_wind"
+                            />
 
 
                     </LinearLayout>
@@ -482,51 +365,11 @@
                             android:layout_height="50dp"
                             android:id="@+id/textview_d3_i1"
                             />
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d3_wd0"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d3_wd1"
-                                android:gravity="center"
-
-                                />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d3_wi0"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d3_wi1"
-                                android:gravity="center"
-                                />
-                        </LinearLayout>
-
+                            android:id="@+id/textview_d3_wind"
+                            />
 
                     </LinearLayout>
 
@@ -579,61 +422,17 @@
                             android:layout_height="50dp"
                             android:id="@+id/textview_d4_i1"
                             />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d4_wd0"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d4_wd1"
-                                android:gravity="center"
-                                />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d4_wi0"
-                                android:gravity="center"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:id="@+id/textview_d4_wi1"
-                                android:gravity="center"
-                                />
-                        </LinearLayout>
-
+                            android:id="@+id/textview_d4_wind"
+                            />
 
                     </LinearLayout>
-
-
-
 
                 </LinearLayout>
 
             </LinearLayout>
-
 
         </RelativeLayout>
 
