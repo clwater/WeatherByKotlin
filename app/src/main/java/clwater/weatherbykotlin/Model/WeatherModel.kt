@@ -13,5 +13,4 @@ class WeatherModel{
     var WIND2 = String()
     var WINS1 = String()
     var WINS2 = String()
-
 }

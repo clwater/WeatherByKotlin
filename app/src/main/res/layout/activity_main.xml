@@ -6,6 +6,14 @@
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageview_main_bg"
+        android:scaleType="fitXY"
+        />
+
+
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="more"
+                android:text="更多城市"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/textview_main_citylist"
                 />
@@ -30,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textview_main_cityname"
                 android:text="name"
+                android:textSize="20sp"
                 android:layout_toLeftOf="@id/textview_main_citylist"
                 android:gravity="center"
                 />
@@ -43,6 +52,8 @@
         android:layout_below="@id/toolbar_main"
         >
 
+
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -52,7 +63,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar_main">
+            android:layout_below="@+id/toolbar_main"
+            >
 
 
 
@@ -69,7 +81,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="22°"
+                        android:text="更新时间"
                         android:paddingTop="10dp"
                         android:paddingStart="10dp"
                         android:id="@+id/textview_now_updata"
@@ -80,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="22°"
+                        android:text="99°"
                         android:textSize="80sp"
                         android:paddingTop="10dp"
                         android:id="@+id/textview_now_temp"
@@ -90,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textview_now_weather"
-                        android:text="多云"
+                        android:text="晴"
                         android:paddingTop="60dp"
                         android:layout_toRightOf="@+id/textview_now_temp"
                         android:textSize="25sp"
@@ -109,7 +121,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="东风68级"
+                            android:text="微风"
                             android:paddingTop="20dp"
                             android:textSize="20sp"
                             android:id="@+id/textview_now_wind"
@@ -120,7 +132,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="相对湿度180%"
+                            android:text="相对湿度0%"
                             android:paddingTop="20dp"
                             android:textSize="20sp"
                             android:id="@+id/textview_now_wet"
@@ -142,6 +154,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
+                        android:padding="3dp"
                         >
 
                         <TextView
@@ -150,6 +163,7 @@
                             android:text="今天"
                             android:id="@+id/textview_d0_text"
                             android:gravity="center"
+                            android:textSize="20sp"
                             />
 
                         <TextView
@@ -168,6 +182,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/textview_d0_t0"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~"
                             />
 
                         <TextView
@@ -203,6 +223,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
+                        android:padding="3dp"
+
                         >
 
                         <TextView
@@ -210,6 +232,7 @@
                             android:layout_height="wrap_content"
                             android:text="明天"
                             android:id="@+id/textview_d1_text"
+                            android:textSize="20sp"
                             />
                         <TextView
                             android:layout_width="50dp"
@@ -227,6 +250,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/textview_d1_t0"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~"
                             />
 
                         <TextView
@@ -261,13 +289,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
+                        android:padding="3dp"
+
                         >
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="三"
+                            android:text=""
                             android:id="@+id/textview_d2_text"
+                            android:textSize="20sp"
                             />
 
                         <TextView
@@ -285,6 +316,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/textview_d2_t0"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~"
                             />
 
                         <TextView
@@ -321,13 +357,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
+                        android:padding="3dp"
+
                         >
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="四天"
+                            android:text=""
                             android:id="@+id/textview_d3_text"
+                            android:textSize="20sp"
                             />
 
                         <TextView
@@ -347,6 +386,11 @@
                             android:id="@+id/textview_d3_t0"
                             />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~"
+                            />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -379,13 +423,15 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
+                        android:padding="3dp"
                         >
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="五天"
+                            android:text=""
                             android:id="@+id/textview_d4_text"
+                            android:textSize="20sp"
                             />
                         <TextView
                             android:layout_width="50dp"
@@ -404,7 +450,11 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/textview_d4_t0"
                             />
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~"
+                            />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

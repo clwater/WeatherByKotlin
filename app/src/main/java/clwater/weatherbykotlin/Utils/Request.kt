@@ -9,10 +9,9 @@ import java.net.URL
 
 
 
-public class Request(val url: String) {
-    public fun run() : String{
+class Request(val url: String) {
+    fun run() : String{
         val forecastJsonStr = URL(url).readText()
-//        Log.d(javaClass.simpleName, forecastJsonStr)
         return forecastJsonStr
     }
 }

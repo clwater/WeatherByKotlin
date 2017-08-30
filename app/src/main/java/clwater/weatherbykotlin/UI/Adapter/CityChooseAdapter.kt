@@ -29,8 +29,6 @@ class CityChooseAdapter : RecyclerView.Adapter<CityChooseAdapter.CityChooseViewH
         this.index = index
     }
 
-
-
     override fun onBindViewHolder(holder: CityChooseViewHolder, position: Int) {
         this.index = list.index
         holder.text.text = list.list!![position]

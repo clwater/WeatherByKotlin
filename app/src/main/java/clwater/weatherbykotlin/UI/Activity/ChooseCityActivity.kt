@@ -3,7 +3,6 @@ package clwater.weatherbykotlin.UI.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import android.view.Window
 import clwater.weatherbykotlin.EventBus.EB_ResultCityChoose
@@ -25,8 +24,6 @@ import org.jetbrains.anko.uiThread
 /**
  * Created by gengzhibo on 17/8/14.
  */
-
-
 
 
 class ChooseCityActivity :  AppCompatActivity(){
@@ -96,13 +93,11 @@ class ChooseCityActivity :  AppCompatActivity(){
         recyview_chooseCity_recyview.addItemDecoration(ItemDecoration(this@ChooseCityActivity))
 
         textview_choooseCity_cityIndex1.setOnClickListener({
-//            Log.d("gzb" , "textview_choooseCity_cityIndex1")
                 index = -1
                 EventBus.getDefault().post(EB_changeCityTitle(0 , index))
         })
 
         textview_choooseCity_cityIndex2.setOnClickListener({
-//            Log.d("gzb" , "textview_choooseCity_cityIndex2")
             index = 0
             EventBus.getDefault().post(EB_changeCityTitle(index1 , index))
         })
@@ -111,7 +106,6 @@ class ChooseCityActivity :  AppCompatActivity(){
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun EventBus_changeCityTitle(e : EB_changeCityTitle){
         index = e.index
-        Log.d("gzb" , "index: " + index)
         if (index == -1) {
             textview_choooseCity_cityIndex2.visibility = View.GONE
             textview_choooseCity_cityIndex3.visibility = View.GONE
@@ -127,8 +121,6 @@ class ChooseCityActivity :  AppCompatActivity(){
         }else if (index == 2){
             var cityName = provinceListy.get(index1).CityList[index2].RegionList[e.position].Rname
             var cityId = provinceListy.get(index1).CityList[index2].RegionList[e.position].Id
-            Log.d("gzb" , "cityName: " + cityName)
-            Log.d("gzb" , "cityId: " + cityId)
             this.finish()
             EventBus.getDefault().post(EB_ResultCityChoose(cityName , cityId))
         }
@@ -146,7 +138,6 @@ class ChooseCityActivity :  AppCompatActivity(){
     }
 
     override fun onBackPressed() {
-        Log.d("gzb" , "onBackPressed index : " + index)
 
         if (index == 0){
             this.finish()

@@ -1,18 +1,11 @@
 package clwater.weatherbykotlin.Utils
 
 import android.util.JsonReader
-import android.util.Log
 import clwater.weatherbykotlin.Model.Province
 import clwater.weatherbykotlin.Model.WeatherModel
 import clwater.weatherbykotlin.Model.WeatherNowModel
-import com.google.gson.Gson
-import org.json.JSONArray
 import org.json.JSONObject
-import org.json.JSONTokener
-import java.io.Reader
 import java.io.StringReader
-import java.util.logging.Logger
-import java.util.regex.Pattern
 
 /**
  * Created by gengzhibo on 17/8/17.
@@ -90,7 +83,6 @@ object Analysis{
     }
 
     fun analysisCityNow(cityInfo: String) : WeatherNowModel{
-//        Log.d("gzb" , cityInfo)
         var _cityInfo = cityInfo.replace("\n" , "")
         _cityInfo = _cityInfo.replace("\t" , "")
         _cityInfo = _cityInfo.replace("\r" , "")
@@ -98,7 +90,6 @@ object Analysis{
 
         val weathernow = WeatherNowModel()
         val temptext = Regex("weather-position-address.*</h4>").findAll(_cityInfo).toList().get(0).value
-//        Log.d("gzb" , "temptextL: " + temptext)
         var temp = Regex("#fff;\">.*?</time>").findAll(temptext).toList().get(0).value
         temp = temp.replace("#fff;\">" , "")
         temp = temp.replace("</time>" , "")
@@ -134,11 +125,9 @@ object Analysis{
         val weatherList = ArrayList<WeatherModel>()
 
         for (value : MatchResult in mat){
-            Log.d("gzb" , value.value )
             val weatherModel  =  WeatherModel()
             val jsonObject =  JSONObject(value.value)
 
-//            Log.d("gzb" , "jsonObject.getString(\"reftime\"): " + jsonObject.getString("reftime") )
 
             weatherModel.reftime = jsonObject.getString("reftime")
             weatherModel.TEMMIN = jsonObject.getInt("TEMMIN")

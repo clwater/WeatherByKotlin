@@ -7,7 +7,6 @@ package clwater.weatherbykotlin.Model
 class CityChooseListShowModel{
     var list = ArrayList<String>()
     var index : Int = -1
-
 }
 
 
